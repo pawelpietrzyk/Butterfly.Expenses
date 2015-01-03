@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ExpensesModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ExpensesModelStoreContainer">
+          <EntitySet Name="Category" EntityType="ExpensesModel.Store.Category" store:Type="Tables" />
+          <EntitySet Name="CategoryTags" EntityType="ExpensesModel.Store.CategoryTags" store:Type="Tables" />
+          <EntitySet Name="ExpenseCategory" EntityType="ExpensesModel.Store.ExpenseCategory" store:Type="Tables" />
+          <EntitySet Name="ExpenseItem" EntityType="ExpensesModel.Store.ExpenseItem" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="ExpensesModel.Store.Users" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Parent" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CategoryTags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="100" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ExpenseCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Value" Type="numeric" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="ValuePlan" Type="numeric" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ExpenseItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProductCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qty" Type="numeric" Nullable="false" />
+          <Property Name="Price" Type="numeric" Nullable="false" />
+          <Property Name="Value" Type="numeric" Nullable="false" />
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ValuePlan" Type="numeric" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Token" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExpensesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ExpensesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="ExpensesModel.Category" />
+          <EntitySet Name="CategoryTags" EntityType="ExpensesModel.CategoryTags" />
+          <EntitySet Name="ExpenseCategory" EntityType="ExpensesModel.ExpenseCategory" />
+          <EntitySet Name="ExpenseItem" EntityType="ExpensesModel.ExpenseItem" />
+          <EntitySet Name="Users" EntityType="ExpensesModel.Users" />
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Parent" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CategoryTags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tag" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ExpenseCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ValuePlan" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Account" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ExpenseItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductName" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ProductCategory" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Qty" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Value" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValuePlan" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Token" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExpensesModelStoreContainer" CdmEntityContainer="ExpensesEntities">
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="ExpensesModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryTags">
+            <EntityTypeMapping TypeName="ExpensesModel.CategoryTags">
+              <MappingFragment StoreEntitySet="CategoryTags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseCategory">
+            <EntityTypeMapping TypeName="ExpensesModel.ExpenseCategory">
+              <MappingFragment StoreEntitySet="ExpenseCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ValuePlan" ColumnName="ValuePlan" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseItem">
+            <EntityTypeMapping TypeName="ExpensesModel.ExpenseItem">
+              <MappingFragment StoreEntitySet="ExpenseItem">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ValuePlan" ColumnName="ValuePlan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ExpensesModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
