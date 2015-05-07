@@ -66,7 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Expenses.sdf" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\Category.cs">
@@ -101,7 +103,9 @@
     </Compile>
     <Compile Include="DataService\ExpensesDataService.cs" />
     <Compile Include="Dispatchers\CategoryRestDispatcher.cs" />
+    <Compile Include="Dispatchers\ExpenseCategoryRestDispatcher.cs" />
     <Compile Include="Handlers\CategoryHttpHandler.cs" />
+    <Compile Include="Handlers\ExpenseCategoryHttpHandler.cs" />
     <Compile Include="Model\Authorization.cs" />
     <Compile Include="Model\AuthUserRequest.cs" />
     <Compile Include="Model\CategoryTagsRequest.cs" />
@@ -112,6 +116,7 @@
     <Compile Include="Model\CreateExpenseItemResponse.cs" />
     <Compile Include="Model\CreateUserRequest.cs" />
     <Compile Include="Model\DeleteCategoryRequest.cs" />
+    <Compile Include="Model\DeleteExpenseCategoryRequest.cs" />
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\ExpenseCategoryItem.cs" />
     <Compile Include="Model\ExpenseCategoryRequest.cs" />

@@ -33,6 +33,40 @@ namespace Butterfly.Service.Expenses
             }
             return response;
         }
+        public static Response DeleteExpenseCategory(DeleteExpenseCategoryRequest request)
+        {
+            Response response = new Response();
+            response.SetFAILED();
+            if (request != null)
+            {
+                using (ExpensesEntities context = new ExpensesEntities())
+                {
+                    ExpenseCategory category = context.ExpenseCategory.FirstOrDefault(p => p.Id == request.Id);
+                    if (category != null)
+                    {
+                        context.ExpenseCategory.Remove(category);
+                        context.SaveChanges();
+                        response.SetSUCCESS();
+                    }
+                    else
+                    {
+                        response.ResultMessage = String.Format("Category {0} not found", request.Id);
+                    }
+                }
+            }
+            return response;
+        }
+        public static List<ExpenseCategory> GetExpenseCategories()
+        {
+            using (ExpensesEntities context = new ExpensesEntities())
+            {
+                IQueryable<ExpenseCategory> items =
+                    from item in context.ExpenseCategory
+                    orderby item.Date descending
+                    select item;
+                return items.ToList();    
+            }
+        }
         public static List<Category> GetCategories(string pattern)
         {
             using (ExpensesEntities context = new ExpensesEntities())
@@ -449,6 +483,7 @@ namespace Butterfly.Service.Expenses
                         }
                         context.ExpenseCategory.Add(item);
                         context.SaveChanges();
+                        response.ResultPayload = item;
                         response.SetSUCCESS();
                     }
                     catch (Exception ex)
